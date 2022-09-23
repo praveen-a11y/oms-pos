@@ -1,0 +1,311 @@
+<div *ngIf="showPosMain; else showPrint" class="row  g-0">
+  <div class="col-sm-8 mb-3 mb-md-0 m-0 p-0">
+    <div *ngIf="!showConfirmBlock; else paymentLeftBlock" class="card innerContainer">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="filterItem" placeholder="Type items..." aria-label="Recipient's username"
+          aria-describedby="button-addon2">
+      </div>
+
+      <mat-tab-group mat-stretch-tabs>
+        <ng-template ngFor let-cat [ngForOf]="categoryItem |filter: filterItem" let-i="index" >
+          <mat-tab [label]="cat.itemCategoryName">
+            <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-1  m-0 p-0">
+              <div class="col" *ngFor="let item of cat.items |filter: filterItem">
+                <div class="card bg-secondary text-white text-center" (click)="addToCart(item)">
+                  <div class="card-body">
+                    {{item.itemName}}   
+                    <br>                  
+                    <small class="text-white"><i class="bi bi-currency-rupee"></i>{{ item.itemPrice }}</small>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </mat-tab>
+        </ng-template>        
+      </mat-tab-group>        
+    </div>
+
+    <ng-template #paymentLeftBlock>
+
+
+      
+
+
+      <div class="card innerContainer">
+        <div class="row">
+          <div class="col-sm-6">        
+            <div class="card tex" style="margin-left: 50%; margin-top: 30%;">
+              <h3 class="text-center">Enter payment details</h3>
+        
+          <div class="row m-1 p-1 g-2">
+            <div class="col-sm-12 text-center">
+              <mat-button-toggle-group [(ngModel)]="paymentInput.paymentModeId" name="fontStyle" aria-label="Font Style">
+                
+                <mat-button-toggle *ngFor="let payment of paymentModes" [value]="payment.paymentTypeId">{{ payment.paymentType }}</mat-button-toggle>
+              
+                <!-- <mat-button-toggle value="8">Card</mat-button-toggle>
+                <mat-button-toggle value="3">Online</mat-button-toggle> -->
+              </mat-button-toggle-group>
+            </div>
+            <div class="col-sm-6">
+              <label for="percentage">Balance Due</label>
+              <input type="number" [(ngModel)]="paymentInput.balanceDue" disabled class="form-control">
+            </div>
+            <div class="col-sm-6">
+              <label for="percentage">Amount Tendered </label>
+              <input type="number" [(ngModel)]="paymentInput.amountTendered" class="form-control" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 46 && event.charCode <= 57))">
+            </div>
+      
+            <div class="col-sm-12 text-end">        
+        <button mat-raised-button color="primary" (click)="addPayment(paymentInput)">Pay</button>
+            </div>
+          </div>            
+            </div>
+          </div>
+        </div>
+        
+    </div>
+    </ng-template>
+  </div>
+
+  <div class="col-sm-4 ps-1 pe-1">
+
+    <div *ngIf="!showConfirmBlock; else paymentBlock" class="card">
+      <div class="row g-0">
+        <div class="col">
+          <mat-button-toggle-group [(ngModel)]="currentCart.orderType" appearance="legacy" name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="T">Take Away</mat-button-toggle>
+            <mat-button-toggle value="D">Dine-In</mat-button-toggle>
+            <mat-button-toggle value="H">Home Delivery</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <div class="col text-end">
+          <button matTooltip="Add customer details" type="button" class="btn btn-outline-danger btn-sm" (click)="openDialogAddCustomer()">
+            <mat-icon style="height: 20px;">person_add</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      
+   
+
+    <mat-tab-group [selectedIndex]="cartTabIndex" (selectedTabChange)="cartTabClick($event)">        
+      <mat-tab label="New"> 
+
+    <div class="card cartContainer border-0">      
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" width="40%">Item</th>
+              <th scope="col" width="10%">Qty</th>
+              <th scope="col" width="10%">Price</th>
+              <th scope="col" width="25%" class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let itemCart of currentCart.items">
+              <td scope="row">{{ itemCart.itemName }}</td>
+              <td>{{ itemCart.qty }}</td>
+              <td>{{ itemCart.itemPrice }}</td>
+              <td class="text-center">
+                <button class="btn btn-primary btn-sm px-2 py-1 mr-1 m-0 p-0" (click)="addQtyToCart(itemCart)">+</button>
+                <button class="btn btn-warning btn-sm px-2 py-1 mr-1 m-1 p-1" (click)="removeQtyToCart(itemCart)">-</button>
+                <button class="btn btn-danger btn-sm px-2 py-1 m-0 p-0" (click)="removeFromCart(itemCart)">x</button>
+              </td>
+            </tr>           
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card border-0">
+            <div class="border-top table-responsive">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      <div> Sub Total:</div>
+                      <div> Discount:</div>
+                      <div> GST<span *ngIf="currentCart.itemSummary.gstPer">({{ currentCart.itemSummary.gstPer | number:'1.2-2'}}%)</span>:</div>
+                      <div> Total:</div>                
+                    </th>
+                    <td class="text-end">
+                      <div> {{ currentCart.itemSummary.cartSubTotal | number:'1.2-2'}}</div>
+                      <div>
+                        
+                        <mat-icon *ngIf="currentCart.itemSummary.discount > 0" (click)="deleteDiscount()" color="warn" matTooltip="Clear discount" style="font-size: 20px;height: 15px; width: 15px;" class="btn-danger">delete_forever</mat-icon>
+
+                        <span class="text-success"> -{{ currentCart.itemSummary.discount | number:'1.2-2'}} </span></div>
+                      <div> {{ currentCart.itemSummary.gst | number:'1.2-2'}}</div>
+                      <div><b> <i class="bi bi-currency-rupee"></i>{{ currentCart.itemSummary.cartTotal | number:'1.2-2'}}</b></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+      
+            </div>
+            <div class="card-footer">
+              
+              <div class="row">
+                <div class="col d-grid"><button type="button" class="btn btn-outline-danger" (click)="cancelOrder()">Cancel</button></div>
+                <div class="col d-grid"><button type="button" class="btn btn-outline-warning" (click)="onholdCart()">Onhold</button></div>
+                <div class="col d-grid"><button type="button" class="btn btn-outline-info" (click)="openDialog()">Discount</button></div>
+                <div class="col d-grid"><button type="button" class="btn btn-success" (click)="gotoPayment()">Payment</button></div>                
+              </div>
+            </div>           
+         
+    </div>
+
+  </mat-tab>
+  <mat-tab [label]="'Onhold(' + onHoldCarts.length +')'">  
+ 
+    <div class=" border-0">      
+      
+      <ol>
+        <li *ngFor="let onholdCart of onHoldCarts">
+       On Hold Order No #{{onholdCart.id}} 
+       <button type="button" class="btn btn-outline-warning" (click)="onHoldToCurrentCart(onholdCart.id)">Send to process</button>
+        </li>       
+      </ol>     
+      
+    </div> 
+  </mat-tab>
+</mat-tab-group>
+
+  </div>
+<ng-template #paymentBlock>
+  <div class="card">    
+  <mat-tab-group mat-stretch-tabs>        
+    <mat-tab label="Order Summary"> 
+
+  <div class="card cartContainer border-0">      
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" width="40%">Item</th>
+            <th scope="col" width="10%">Qty</th>
+            <th scope="col" width="10%">Price</th>            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let itemCart of currentCart.items">
+            <td scope="row">{{ itemCart.itemName }}</td>
+            <td>{{ itemCart.qty }}</td>
+            <td>{{ itemCart.itemPrice }}</td>            
+          </tr>           
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+        
+        <mat-chip-list aria-label="Fish selection">          
+          <mat-chip color="primary" *ngFor="let payment of paymentInputs" >
+            {{ payment.paymentMode }} - {{ payment.amountTendered | number:'1.2-2' }}
+            <button matChipRemove (click)="removePayment(payment)">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>          
+        </mat-chip-list>
+
+
+  <div class="card border-0">
+          <div class="border-top table-responsive">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    <div> Sub Total:</div>
+                    <div> Discount:</div>
+                    <div> GST:</div>
+                    <div> Total:</div>                
+                  </th>
+                  <td class="text-end">
+                    <div> {{ currentCart.itemSummary.cartSubTotal | number:'1.2-2'}}</div>
+                    <div>                      
+                      <span class="text-success"> -{{ currentCart.itemSummary.discount | number:'1.2-2'}} </span></div>
+                    <div> {{ currentCart.itemSummary.gst | number:'1.2-2'}}</div>
+                    <div><b> <i class="bi bi-currency-rupee"></i>{{ currentCart.itemSummary.cartTotal | number:'1.2-2'}}</b></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+    
+          </div>
+          <div class="card-footer">
+            
+            <div class="row">
+              <div class="col d-grid"><button type="button" class="btn btn-outline-danger" (click)="cancelOrder()">Cancel</button></div>
+              <div class="col d-grid"><button type="button" class="btn btn-outline-warning" (click)="modifyOrdert()">Modify</button></div>              
+              <div class="col d-grid">
+                <button type="button" class="btn btn-success" (click)="confirmOrder()" [disabled]="orderProcessing">
+                
+                <span *ngIf="!orderProcessing; else elseBlock">Confirm</span>                       
+                <ng-template #elseBlock>
+                   <span> Processing...</span></ng-template> 
+              
+              </button></div>                
+            </div>
+          </div>           
+       
+  </div>
+
+</mat-tab>
+</mat-tab-group>
+
+</div>
+</ng-template>
+</div>
+</div> 
+
+<ng-template #showPrint>
+<div class="row">
+  <div class="col-sm-12 mb-3 mb-md-0 m-0 p-0">
+    <div class="card innerContainer">
+      <div class="row">
+        <div  class="col-sm-6">
+          <div class="card tex" style="margin-left: 50%; margin-top: 30%;">
+      
+        <div class="row m-1 p-1 g-2">
+          <div class="col-sm-12 text-center">
+            <mat-icon matTooltip="Clear discount" style="color:green; font-size: 50px;height: 50px; width: 50px;" class="btn-danger">done</mat-icon>
+            <h3 class="text-center">Order Success - <b>#{{ currentOrder.billNo }}</b></h3>
+          </div>     
+
+              <div class="col d-grid">
+                <button mat-raised-button color="primary" (click)="goToPosMain()">Go to Home</button>                       
+
+              </div>
+              <div class="col d-grid">
+                <button mat-raised-button color="primary" (click)="printOrder()">Print</button>
+              </div>              
+        </div>            
+          </div>
+        </div>
+      </div>
+      
+  </div>
+  </div>
+
+</div>
+</ng-template>
+  
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Order receipt</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   test
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+  </div>
+</ng-template>
+

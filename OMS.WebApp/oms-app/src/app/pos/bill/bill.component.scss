@@ -1,0 +1,76 @@
+@media print {
+    .hidden-print,
+    .hidden-print * {
+        display: none !important;
+    }
+}
+@page {
+    margin: 1mm;
+    }
+
+    * {
+        font-size: 12px;
+        font-family: 'Times New Roman';
+    }
+   
+    td,
+    th,
+    tr,
+    table {
+        //border-top: 1px solid black;
+        border:0;
+        border-collapse: collapse;
+        padding: 0;
+        margin: 0;
+    }
+
+    thead, tbody, tfoot {
+       //border-top: 2px dashed gray;
+       //border-bottom: 2px dashed gray;
+        //border-collapse: collapse;
+        border:0;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .tr-top-border{
+        border-top: 2px dashed gray;
+    }
+    .tr-bottom-border{
+        border-bottom: 2px dashed gray;
+    }    
+
+    td.description,
+    th.description {
+        //width: 95px;
+        //max-width: 95px;
+    }
+    
+    td.quantity,
+    th.quantity {
+        width: 35px;
+        max-width: 35px;
+        word-break: break-all;
+    }
+    
+    td.price,
+    th.price {
+        width: 35px;
+        max-width: 35px;
+        word-break: break-all;
+    }
+    
+    .centered {
+        text-align: center;
+        align-content: center;
+    }
+    
+    .ticket {
+        width: 250px;
+        max-width: 250px;
+    }
+    
+    img {
+        max-width: inherit;
+        width: inherit;
+    }

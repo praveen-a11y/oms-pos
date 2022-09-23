@@ -1,0 +1,67 @@
+<mat-toolbar class="mat-elevation-z8 app-header" >
+    <div> <button
+      mat-icon-button
+      
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon> menu </mat-icon>
+    </button>
+   
+    OMS
+</div>  
+    
+        <span class="">
+            <span class="bell-icon">
+              <mat-icon matBadgeColor="warn" matBadge="4">notifications_none</mat-icon>
+            </span>
+             <button  mat-mini-fab [matMenuTriggerFor]="menu" matTooltipPosition="left"  color="accent">
+              <mat-icon>perm_identity</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="logout()">
+                  <mat-icon>power_settings_new</mat-icon>
+                  <span>Logout</span>
+                </button>
+            </mat-menu>
+          </span>     
+  </mat-toolbar>
+  
+  <mat-sidenav-container >
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side" opened>
+     
+  
+      <h4 class="name">Vivek Sharma</h4>
+      <p class="designation">Outlet Operator</p>
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLink="/dashboard">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="/orders">
+        <mat-icon>list</mat-icon>
+        <span>Orders</span>
+      </button>
+
+      <button mat-button class="menu-button" routerLink="/sale">
+        <mat-icon>desktop_windows</mat-icon>
+        <span>POS</span>
+      </button>
+      
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLink="/about">
+        <mat-icon>info</mat-icon>
+        <span>About</span>
+      </button>
+ 
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+

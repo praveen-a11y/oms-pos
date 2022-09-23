@@ -1,0 +1,49 @@
+<mat-toolbar color="primary" class="app-header">
+    <div><a href="javascript:void(0);" class="positronx">OMS</a></div>
+    <span class="nav-tool-items">
+      <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
+    </span>
+  </mat-toolbar>
+
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-content>
+            <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit(form)" autocomplete="off">
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>User Name:</mat-label>
+                        <input matInput type="userName" formControlName="userName" placeholder="Your user name">
+                        <mat-icon matSuffix>account_circle</mat-icon>
+                        <mat-error *ngIf="form.controls['userName'].errors?.['required']">User name is required</mat-error>                        
+                    </mat-form-field>
+                </div>
+    
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Password </mat-label>
+                        <input matInput [type]="flag ? 'password' : 'text'" placeholder="Enter your password"
+                            formControlName="password">
+                        <mat-icon (click)="flag=!flag" matSuffix>{{ flag ? 'visibility' : 'visibility_off' }}</mat-icon>
+                        <mat-error>Password is required</mat-error>                        
+                    </mat-form-field>
+                </div>
+    
+                <div>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid || processing">
+                       <span *ngIf="!processing; else elseBlock">Login</span>                       
+                        <ng-template #elseBlock>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Validating...</ng-template>                       
+                    </button>
+                
+                </div>
+    
+            </form>
+            <mat-error *ngIf="IsFailed">Failed! Invalid credentials.</mat-error>                                    
+        </mat-card-content>
+    </mat-card>
+  
+  </div>
+

@@ -1,0 +1,45 @@
+<div mat-dialog-content>
+    
+    <h3 class="text-center"><img height="25px" width="35px" src="../../../assets/icons/Swiggy.png" alt="img"> New Order - #1003</h3>
+   
+    <div class="card cartContainer border-0">      
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" width="40%">Item</th>
+                <th scope="col" width="10%">Qty</th>
+                <th scope="col" width="10%">Price</th>            
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td scope="row">GRILLED CHICKEN BAGEL</td>
+                <td>2</td>
+                <td>450</td>            
+              </tr>   
+              <tr >
+                <td scope="row">N-VEG CUBANOS</td>
+                <td>1</td>
+                <td>475</td>            
+              </tr>         
+              <tr >
+                <td scope="row">VEG CHEESE MELT</td>
+                <td>2</td>
+                <td>560</td>            
+              </tr> 
+              <tr >
+                <th class="text-end" colspan="2" scope="row">Total</th>
+                <th>1485</th>            
+              </tr> 
+            </tbody>
+          </table>
+        </div>
+      </div> 
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" (click)="acceptOrder()" cdkFocusInitial>Accept</button>
+    
+  </div>
+  

@@ -1,0 +1,99 @@
+  
+    <div id="demo" >
+        <div class="ticket">            
+            <p class="centered">
+                <b>
+               <span style="font-size: 14px;"> FOODS LIMITED </span> <br>           
+               <span style="font-size: 13px;">
+                <container-element [ngSwitch]="currentOrder.orderType">
+                    <span *ngSwitchCase="'T'">Take Away</span>
+                    <span *ngSwitchCase="'D'">Dine-In</span>
+                    <span *ngSwitchCase="'H'">Home Delivery</span>
+                    <span *ngSwitchDefault>...</span>
+                  </container-element>
+            </span>
+    
+                <br>SEC 55 - CHD
+                <br><u> Batch No.11 Sec-55</u>
+                <br>GST No. - 0353VSDF323HFD
+                <br>Bill No. - {{ currentOrder.billNo }}
+                <br>Date - 09/09/2022 Time - 12:06:48 
+                <br>Cashier: Sector8Chd
+                <br>Contact No: 0172-4512698 
+            </b>
+            </p>
+    
+            <table width="100%">
+                <thead>
+                    <tr class="tr-top-border tr-bottom-border">
+                        
+                        <th class="description">Item</th>
+                        <th class="price">Price</th>
+                        <th class="quantity">Qty</th>
+                        <th class="">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr-top-border" *ngFor="let item of currentOrder.orderItems">
+                        <td class="description">{{ item.itemName }}</td>
+                        <td class="price">{{ item.itemPrice }}</td>
+                        <td class="quantity">{{ item.qty }}</td>
+                        <td class="">{{ (item.itemPrice * item.qty) | number:'1.2-2' }}</td>
+                    </tr>                   
+                </tbody>
+                <tfoot>
+                    <tr class="tr-top-border">
+                        <td class="description">Total</td>
+                        <td class="price"></td>
+                        <td class="quantity">{{ currentOrder.quantityTotal| number:'1.2-2' }}</td>
+                        <td class="">{{ currentOrder.subTotal| number:'1.2-2' }}</td>
+                    </tr> 
+                </tfoot>
+                        
+            </table>
+            <table width="100%">
+                <tbody>
+                    <tr class="tr-top-border">
+                        <th class="description">Discount</th>
+                        <td class="price"></td>
+                        <td class="quantity"></td>
+                        <td class="">{{ currentOrder.discount| number:'1.2-2'}}</td>
+                        </tr>
+                        <tr class="">
+                            <th class="description">SGST@</th>
+                            <td class="price"></td>
+                            <td class="quantity"></td>
+                            <td class="">{{ (currentOrder.gstAmount/2) | number:'1.2-2'}}</td>
+                            </tr>
+                            <tr class="">
+                                <th class="description">CGST@</th>
+                                <td class="price"></td>
+                                <td class="quantity"></td>
+                                <td class="">{{ (currentOrder.gstAmount/2) | number:'1.2-2'}}</td>
+                                </tr>
+                                <tr class="tr-top-border">
+                                    <th class="description">Round Off</th>
+                                    <td class="price"></td>
+                                    <td class="quantity"></td>
+                                    <td class="">.25</td>
+                                    </tr>
+                                    <tr class="">
+                                        <th class="description">Gross Amount</th>
+                                        <td class="price"></td>
+                                        <td class="quantity"></td>
+                                        <td class="">{{ currentOrder.total | number:'1.2-2'}}</td>
+                                        </tr>
+                                        <tr class="tr-top-border tr-bottom-border">
+                                            <th colspan="3" class="description">
+                                                Payment Details -  {{ currentOrder.paymentInputs[0].paymentMode }}
+                                            </th>                                        
+                                            <td class="">{{ currentOrder.total | number:'1.2-2'}} </td>
+                                            </tr>
+                </tbody>          
+            </table>
+            <p class="centered">
+            <b>HAVE A GREAT DAY</b>    
+            </p>
+        </div>
+    </div>
+

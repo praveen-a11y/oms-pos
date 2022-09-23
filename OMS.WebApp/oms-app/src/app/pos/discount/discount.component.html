@@ -1,0 +1,25 @@
+<div mat-dialog-content>
+    <h3 class="text-center">Enter discount details</h3>
+    
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="percentage">Percentage(%)</label>
+          <input type="number" id="percentage" class="form-control" [(ngModel)]="orderDiscount.inPercentage" (keyup)="calculateDiscountPer()" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 46 && event.charCode <= 57))">
+        </div>
+        <div class="col-sm-6">
+          <label for="inAmount">In Amount</label>
+          <input type="number" id="inAmount" class="form-control" [(ngModel)]="orderDiscount.inAmount" (keyup)="calculateDiscountAmt()" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 46 && event.charCode <= 57))">
+        </div>
+  
+        <div class="col-sm-12">
+          <label for="discountReason">Discount reason </label> <span class="text-danger"> {{ errorMessage }}</span>
+          <textarea type="text" id="discountReason" maxlength="200" class="form-control" rows="2" [(ngModel)]="orderDiscount.discountReason"></textarea>
+        </div>
+      </div>  
+  </div>
+  <div mat-dialog-actions align="center">
+     <button mat-raised-button mat-dialog-close (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onApplyClick(orderDiscount)" cdkFocusInitial>Apply</button>
+    
+  </div>
+  

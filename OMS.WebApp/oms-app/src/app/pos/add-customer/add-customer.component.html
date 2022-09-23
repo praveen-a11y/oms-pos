@@ -1,0 +1,25 @@
+<div mat-dialog-content>
+    <h3 class="text-center">Enter customer details</h3>
+    
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="name">Name</label>
+          <input type="text" [(ngModel)]="customerDetails.name" class="form-control" maxlength="50">
+        </div>
+        <div class="col-sm-6">
+          <label for="mobile">Mobile</label>
+          <input type="text" [(ngModel)]="customerDetails.mobile" class="form-control" maxlength="10" (keyup)="allowNumericDigitsOnlyOnKeyUp($event)">
+        </div>
+  
+        <div class="col-sm-12">
+          <label for="address">Address</label>
+          <textarea type="text" [(ngModel)]="customerDetails.address" maxlength="200" class="form-control" rows="2"></textarea>
+        </div>
+      </div>  
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-dialog-close mat-raised-button (click)="onNoClick()">Cancel</button>
+    <button color="primary" mat-raised-button [mat-dialog-close]="customerDetails" cdkFocusInitial>Add</button>
+    
+  </div>
+  

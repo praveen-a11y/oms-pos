@@ -1,0 +1,66 @@
+<mat-toolbar class="mat-elevation-z8 app-header" >
+    <div> 
+    OMS-POS
+</div>  
+    
+
+        <span class="">
+          <button matTooltip="POS" mat-button class="menu-button" routerLink="/sale">
+            <mat-icon>desktop_windows</mat-icon>
+          </button>
+          <button matTooltip="Order History" mat-button class="menu-button" routerLink="/order-history">
+            <mat-icon>list</mat-icon>            
+          </button>
+     
+            <button matTooltip="Notifications" mat-button  class="bell-icon" data-bs-toggle="dropdown" >
+              <mat-icon matBadgeColor="warn" matBadge="4">notifications_none</mat-icon>
+            </button>
+            <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a> -->
+           
+
+             <button matTooltip="Logout" mat-mini-fab  (click)="logout()">
+              <mat-icon>power_settings_new</mat-icon>
+            </button>
+            <ul class="dropdown-menu mat-elevation-z8" style="width: 250px;">
+              <li (click)="viewOrder()">
+                <div class="notifications-item notifications-item-unread"> <img src="../../../assets/icons/Swiggy.png" alt="img">
+                  <div class="text">
+                      <h4> Order #1004</h4>
+                      <p> 5 seconds ago</p>
+                  </div>
+              </div>
+              </li>
+              <li (click)="viewOrder()">
+                <div class="notifications-item notifications-item-unread"> <img src="../../../assets/icons/zomato.png" alt="img">
+                  <div class="text">
+                      <h4> Order #1004</h4>
+                      <p> 10 seconds ago</p>
+                  </div>
+              </div>
+              </li>
+              <li (click)="viewOrder()">
+                <div class="notifications-item"> <img src="../../../assets/icons/Swiggy.png" alt="img">
+                  <div class="text">
+                      <h4> Order #1004</h4>
+                      <p> 45 seconds ago</p>
+                  </div>
+              </div>
+              </li>
+              <li (click)="viewOrder()">
+                <div class="notifications-item notifications-item-unread"> <img src="../../../assets/icons/zomato.png" alt="img">
+                  <div class="text">
+                      <h4> Order #1004</h4>
+                      <p> 2 minutes ago</p>
+                  </div>
+              </div>
+              </li>
+            </ul>  
+          </span>
+             
+  </mat-toolbar>
+
+  <div class="content mat-elevation-z8">
+    <router-outlet></router-outlet>
+  </div>

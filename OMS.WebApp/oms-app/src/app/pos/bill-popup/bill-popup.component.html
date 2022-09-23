@@ -1,0 +1,8 @@
+<div mat-dialog-content class="mat-typography">    
+<app-bill [currentOrder] = "currentOrder"></app-bill>     
+  </div>
+  <div mat-dialog-actions align="center">
+    <button class="btn btn-outline-secondary" mat-dialog-close mat-button (click)="onNoClick()">Cancel</button>
+    <button class="btn btn-success" [print]="['demo']" mat-button [mat-dialog-close] cdkFocusInitial>Print</button>
+    <!-- <button [print]="['demo']" class="btn btn-info m-1">Print Bill</button> -->
+  </div>
