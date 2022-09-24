@@ -1,0 +1,25 @@
+<div class="header">
+    <h2 mat-dialog-title>Pin Validation</h2>
+</div>
+<div mat-dialog-content>
+        
+      <div class="row">
+        <div class="col-sm-12">          
+          <mat-form-field appearance="standard">            
+             <mat-label>Security pin </mat-label>
+            <input appOskInput matInput [type]="flag ? 'password' : 'text'" placeholder="Enter security pin"
+                [(ngModel)]="securityPin" >
+                <mat-icon (click)="flag=!flag" matSuffix>{{ flag ? 'visibility' : 'visibility_off' }}</mat-icon>
+                                   
+        </mat-form-field>
+         <mat-error *ngIf="errorMessage.length > 0">Security pin is required</mat-error> 
+
+        </div>
+      </div>  
+  </div>
+  <div mat-dialog-actions align="center">
+     <button mat-raised-button mat-dialog-close (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onApplyClick(securityPin)" cdkFocusInitial>Validate</button>
+    
+  </div>
+  

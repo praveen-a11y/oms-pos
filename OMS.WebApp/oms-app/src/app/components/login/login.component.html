@@ -3,8 +3,8 @@
     <span class="nav-tool-items">
       <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
     </span>
-  </mat-toolbar>
-
+  </mat-toolbar>  
+  
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
 
     <mat-card class="box">
@@ -14,7 +14,7 @@
                 <div>
                     <mat-form-field appearance="standard">
                         <mat-label>User Name:</mat-label>
-                        <input matInput type="userName" formControlName="userName" placeholder="Your user name">
+                        <input appOskInput matInput type="userName" formControlName="userName" placeholder="Your user name">
                         <mat-icon matSuffix>account_circle</mat-icon>
                         <mat-error *ngIf="form.controls['userName'].errors?.['required']">User name is required</mat-error>                        
                     </mat-form-field>
@@ -23,7 +23,7 @@
                 <div>
                     <mat-form-field appearance="standard">
                         <mat-label>Password </mat-label>
-                        <input matInput [type]="flag ? 'password' : 'text'" placeholder="Enter your password"
+                        <input appOskInput matInput [type]="flag ? 'password' : 'text'" placeholder="Enter your password"
                             formControlName="password">
                         <mat-icon (click)="flag=!flag" matSuffix>{{ flag ? 'visibility' : 'visibility_off' }}</mat-icon>
                         <mat-error>Password is required</mat-error>                        
@@ -47,3 +47,4 @@
   
   </div>
 
+  <app-keyboard></app-keyboard>

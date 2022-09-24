@@ -29,6 +29,11 @@ import { TokenInterceptorService } from './helpers/token-interceptor.service';
 import { OrderHistoryComponent } from './pos/order-history/order-history.component';
 import { NewOrderDialogComponent } from './pos/new-order-dialog/new-order-dialog.component';
 import { Ng2SearchPipeModule  } from 'ng2-search-filter';
+import { KeyboardComponent } from './keyboard/keyboard.component';
+import { KeyboardService } from './keyboard/keyboard.service';
+import { OskInputDirective } from './keyboard/osk-input.directive';
+import { KeyboardKeyDirective } from './keyboard/keyboard-key.directive';
+import { PinValidateDialogComponent } from './pos/pin-validate-dialog/pin-validate-dialog.component';
 
 
 
@@ -49,7 +54,10 @@ import { Ng2SearchPipeModule  } from 'ng2-search-filter';
     AlertComponent,
     DiscountComponent,
     OrderHistoryComponent,
-    NewOrderDialogComponent,    
+    NewOrderDialogComponent,
+    KeyboardComponent,
+    OskInputDirective, 
+    KeyboardKeyDirective, PinValidateDialogComponent  
   ],
   imports: [
     BrowserModule,
@@ -75,7 +83,7 @@ import { Ng2SearchPipeModule  } from 'ng2-search-filter';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  }],
+  }, KeyboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

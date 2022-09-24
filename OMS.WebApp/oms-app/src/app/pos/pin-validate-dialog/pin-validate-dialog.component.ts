@@ -1,46 +1,37 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OrderDiscount } from '../../models/order-discount';
-import { PinValidateDialogComponent } from '../pin-validate-dialog/pin-validate-dialog.component';
 
 @Component({
-  selector: 'app-discount',
-  templateUrl: './discount.component.html',
-  styleUrls: ['./discount.component.scss']
+  selector: 'app-pin-validate-dialog',
+  templateUrl: './pin-validate-dialog.component.html',
+  styleUrls: ['./pin-validate-dialog.component.scss']
 })
-export class DiscountComponent {
+export class PinValidateDialogComponent implements OnInit {
   errorMessage!: string;
+  securityPin!: string;
+  flag: boolean = true;
   constructor(public dialog: MatDialog,
-    public dialogRef: MatDialogRef<DiscountComponent>,
+    public dialogRef: MatDialogRef<PinValidateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) 
     public orderDiscount: OrderDiscount,
   ) { 
     this.errorMessage = '';
   }
 
+  ngOnInit(): void {
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  onApplyClick(orderDiscount: OrderDiscount): void {
+  onApplyClick(securityPin: string): void {
     this.errorMessage = '';
-    if(!orderDiscount.discountReason.length && orderDiscount.inPercentage > 0){
+    if(!securityPin){
       this.errorMessage = '(Required)';
     } else{
-
-      const dialogRef = this.dialog.open(PinValidateDialogComponent, {
-        width: '300px',
-        data: orderDiscount,
-        disableClose: true,
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');      
-        let orderDiscount: OrderDiscount = result;
-        this.dialogRef.close(orderDiscount);
-      });
-    
-      
+      this.dialogRef.close(this.orderDiscount);
     }
     
   }
