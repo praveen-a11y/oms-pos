@@ -1,8 +1,20 @@
 <div mat-dialog-content>
     
-    <h3 class="text-center"><img height="25px" width="35px" src="../../../assets/icons/Swiggy.png" alt="img"> New Order - #1003</h3>
+    <h2 class="text-center"><img height="25px" width="35px" src="../../../assets/icons/Swiggy.png" alt="img"> Order - #1003</h2>
    
     <div class="card cartContainer border-0">      
+      <div class="row">
+        <div class="col-6">
+          date: sep 4, 2022<br>
+          time: 12.30 pm<br>
+          address: sec-14 virar, mumbai
+        </div>
+        <div class="col-6 text-end">
+          <span><b> jonathan scott</b></span><br>
+          jonathanscott@test.com<br>
+          9122222222
+        </div>
+      </div>
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -29,7 +41,7 @@
                 <td>560</td>            
               </tr> 
               <tr >
-                <th class="text-end" colspan="2" scope="row">Total</th>
+                <th class="text-end" colspan="2" scope="row">Total Amount</th>
                 <th>1485</th>            
               </tr> 
             </tbody>
@@ -38,8 +50,9 @@
       </div> 
   </div>
   <div mat-dialog-actions align="center">
-    <button mat-raised-button mat-dialog-close>Cancel</button>
-    <button mat-raised-button color="primary" (click)="acceptOrder()" cdkFocusInitial>Accept</button>
+    <button mat-raised-button mat-dialog-close>Close</button>        
+    <button mat-raised-button color="warn" (click)="cancelOrder()" cdkFocusInitial>Cancel Order</button>
+    <button mat-raised-button color="primary" (click)="acceptOrder()" cdkFocusInitial>Accept Order</button>
     
   </div>
   

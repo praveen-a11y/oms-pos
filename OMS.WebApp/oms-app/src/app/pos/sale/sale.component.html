@@ -11,7 +11,7 @@
           <mat-tab [label]="cat.itemCategoryName">
             <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-1  m-0 p-0">
               <div class="col" *ngFor="let item of cat.items |filter: filterItem">
-                <div class="card bg-secondary text-white text-center" (click)="addToCart(item)">
+                <div class="card bg-secondary card-body-item text-white text-center" (click)="addToCart(item)">
                   <div class="card-body">
                     {{item.itemName}}   
                     <br>                  
@@ -128,7 +128,7 @@
                     <th scope="row">
                       <div> Sub Total:</div>
                       <div> Discount:</div>
-                      <div> GST<span *ngIf="currentCart.itemSummary.gstPer">({{ currentCart.itemSummary.gstPer | number:'1.2-2'}}%)</span>:</div>
+                      <div> GST:</div>
                       <div> Total:</div>                
                     </th>
                     <td class="text-end">
@@ -205,7 +205,7 @@
         
         <mat-chip-list aria-label="Fish selection">          
           <mat-chip color="primary" *ngFor="let payment of paymentInputs" >
-            {{ payment.paymentMode }} - {{ payment.amountTendered | number:'1.2-2' }}
+            {{ payment.paymentMode }}({{ payment.amountTendered | number:'1.2-2' }})
             <button matChipRemove (click)="removePayment(payment)">
               <mat-icon>cancel</mat-icon>
             </button>

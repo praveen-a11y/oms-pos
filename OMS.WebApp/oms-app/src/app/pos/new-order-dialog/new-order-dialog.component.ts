@@ -25,5 +25,17 @@ export class NewOrderDialogComponent implements OnInit {
       this.dialogRef.close(); 
       });
   }
+public cancelOrder():void{
+    this.dialogService.alertDialog({
+      title: 'Canceled!',
+      message: 'Order has been canceled.',
+      confirmText: 'Ok',
+      cancelText: '',
+    }).subscribe(result => {     
 
-}
+      this.dialogRef.close(); 
+      });
+  }
+
+}  
+

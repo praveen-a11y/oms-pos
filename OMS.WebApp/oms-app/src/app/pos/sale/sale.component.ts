@@ -275,25 +275,37 @@ removeAllFromCart(): void{
     return this.paymentModes.filter(x => x.paymentTypeId == paymentTypeId)[0].paymentType;
   }
   addPayment(paymentInput : PaymentInput): void{
-    const productExistInPayment = this.paymentInputs
-    .find((x: { paymentModeId: string; }) => x.paymentModeId === paymentInput.paymentModeId);
-
-    if(productExistInPayment){
-    productExistInPayment.amountTendered += paymentInput.amountTendered;
-    paymentInput.balanceDue =  parseFloat((paymentInput.balanceDue - paymentInput.amountTendered).toFixed(2));
-      paymentInput.amountTendered = paymentInput.balanceDue;
-    }
-    else{
-      this.paymentInputs.push({
-        amountTendered: paymentInput.amountTendered, 
-        paymentModeId: paymentInput.paymentModeId,
-        paymentMode: this.getPaymentModeName(paymentInput.paymentModeId),
-        balanceDue: 0
-      });
-
+    if(paymentInput.amountTendered > paymentInput.balanceDue){
+      this.dialogService.alertDialog({
+        title: 'Invalid Amount!',
+        message: `Tendered amount can't be more than balance due!`,
+        confirmText: 'Ok',
+        cancelText: '',
+      }).subscribe(result => {     
+  
+        });
+    } else{
+      const productExistInPayment = this.paymentInputs
+      .find((x: { paymentModeId: string; }) => x.paymentModeId === paymentInput.paymentModeId);
+  
+      if(productExistInPayment){
+      productExistInPayment.amountTendered += paymentInput.amountTendered;
       paymentInput.balanceDue =  parseFloat((paymentInput.balanceDue - paymentInput.amountTendered).toFixed(2));
-      paymentInput.amountTendered = paymentInput.balanceDue;
-    }    
+        paymentInput.amountTendered = paymentInput.balanceDue;
+      }
+      else{
+        this.paymentInputs.push({
+          amountTendered: paymentInput.amountTendered, 
+          paymentModeId: paymentInput.paymentModeId,
+          paymentMode: this.getPaymentModeName(paymentInput.paymentModeId),
+          balanceDue: 0
+        });
+  
+        paymentInput.balanceDue =  parseFloat((paymentInput.balanceDue - paymentInput.amountTendered).toFixed(2));
+        paymentInput.amountTendered = paymentInput.balanceDue;
+      }
+    }
+        
   }
 
   removePayment(paymentInput : PaymentInput): void{

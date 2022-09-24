@@ -24,7 +24,7 @@ public viewOrder(): void{
     
    this.dialog
   .open(NewOrderDialogComponent, {    
-    width: '400px',
+    width: '500px',
     disableClose: true,
   });
 }
