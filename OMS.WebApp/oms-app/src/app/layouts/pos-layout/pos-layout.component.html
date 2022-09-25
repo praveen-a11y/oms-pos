@@ -4,14 +4,21 @@
 </div>  
     
 
-        <span class="">
+        <span class="">          
+          <button matTooltip="Order History" mat-button class="menu-button" routerLink="/order-report">
+            Order
+          </button>
+     
+          <button matTooltip="Order History" mat-button class="menu-button" routerLink="/order-report-item-wise">
+            Order Item Wise
+          </button>
+
+          <button matTooltip="Order History" mat-button class="menu-button" routerLink="/order-report-item-summary">
+            Order Item Summary
+          </button>
           <button matTooltip="POS" mat-button class="menu-button" routerLink="/sale">
             <mat-icon>desktop_windows</mat-icon>
           </button>
-          <button matTooltip="Order History" mat-button class="menu-button" routerLink="/order-history">
-            <mat-icon>list</mat-icon>            
-          </button>
-     
             <button matTooltip="Notifications" mat-button  class="bell-icon" data-bs-toggle="dropdown" >
               <mat-icon matBadgeColor="warn" matBadge="4">notifications_none</mat-icon>
             </button>

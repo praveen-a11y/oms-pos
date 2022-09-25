@@ -34,6 +34,9 @@ import { KeyboardService } from './keyboard/keyboard.service';
 import { OskInputDirective } from './keyboard/osk-input.directive';
 import { KeyboardKeyDirective } from './keyboard/keyboard-key.directive';
 import { PinValidateDialogComponent } from './pos/pin-validate-dialog/pin-validate-dialog.component';
+import { OrderReportComponent } from './pos/order-report/order-report.component';
+import { OrderReportItemWiseComponent } from './pos/order-report-item-wise/order-report-item-wise.component';
+import { OrderReportItemSummaryComponent } from './pos/order-report-item-summary/order-report-item-summary.component';
 
 
 
@@ -57,7 +60,7 @@ import { PinValidateDialogComponent } from './pos/pin-validate-dialog/pin-valida
     NewOrderDialogComponent,
     KeyboardComponent,
     OskInputDirective, 
-    KeyboardKeyDirective, PinValidateDialogComponent  
+    KeyboardKeyDirective, PinValidateDialogComponent, OrderReportComponent, OrderReportItemWiseComponent, OrderReportItemSummaryComponent  
   ],
   imports: [
     BrowserModule,
