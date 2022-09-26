@@ -1,6 +1,6 @@
   
     <div id="demo" >
-        <div *ngIf="this.currentOrder.orderType === 'D'; else kotbill" class="ticket">            
+        <div class="ticket">            
             <p class="centered">
                 <b>
                <span style="font-size: 14px;"> KOT No. - 5 </span> <br>                          
@@ -36,8 +36,8 @@
             </p>
         </div>
 
-        
-        <ng-template #kotbill>
+        <mat-divider></mat-divider>
+      
             <div class="ticket">            
                 <p class="centered">
                     <b>
@@ -133,6 +133,5 @@
                 <b>HAVE A GREAT DAY</b>    
                 </p>
             </div>
-    </ng-template>
     </div>
 
