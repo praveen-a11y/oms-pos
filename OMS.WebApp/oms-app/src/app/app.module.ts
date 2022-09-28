@@ -37,6 +37,8 @@ import { PinValidateDialogComponent } from './pos/pin-validate-dialog/pin-valida
 import { OrderReportComponent } from './pos/order-report/order-report.component';
 import { OrderReportItemWiseComponent } from './pos/order-report-item-wise/order-report-item-wise.component';
 import { OrderReportItemSummaryComponent } from './pos/order-report-item-summary/order-report-item-summary.component';
+import { OrderReportSaleComponent } from './pos/order-report-sale/order-report-sale.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -60,7 +62,7 @@ import { OrderReportItemSummaryComponent } from './pos/order-report-item-summary
     NewOrderDialogComponent,
     KeyboardComponent,
     OskInputDirective, 
-    KeyboardKeyDirective, PinValidateDialogComponent, OrderReportComponent, OrderReportItemWiseComponent, OrderReportItemSummaryComponent  
+    KeyboardKeyDirective, PinValidateDialogComponent, OrderReportComponent, OrderReportItemWiseComponent, OrderReportItemSummaryComponent, OrderReportSaleComponent  
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,7 @@ import { OrderReportItemSummaryComponent } from './pos/order-report-item-summary
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  }, KeyboardService],
+  }, KeyboardService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,6 +18,8 @@ namespace OMS.DAL.DataAccessRepository
             CreateMap<GetOutletOrderListResponse, GetOutletOrderListResponseModel>();
             CreateMap<GetOuteltItemWiseOrderDetailNewResponse, GetOuteltItemWiseOrderDetailNewResponseModel>();
             CreateMap<GetOuteltItemDetailSummaryResponse, GetOuteltItemDetailSummaryResponseModel>();
+            CreateMap<GetOutletSaleDetailsResponse, GetOutletSaleDetailsResponseModel>();
+            CreateMap<GetOutletSalePaymentDetailsResponse, GetOutletSalePaymentDetailsResponseModel>();
         }
     }
 }

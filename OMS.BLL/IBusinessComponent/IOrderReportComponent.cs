@@ -12,5 +12,6 @@ namespace OMS.BLL.IBusinessComponent
         IEnumerable<GetOutletOrderListResponseModel> GetOutletOrderList(OrderReportRequestModel requestModel);
         IEnumerable<GetOuteltItemWiseOrderDetailNewResponseModel> GetOuteltItemWiseOrderDetail(OrderReportRequestModel requestModel);
         IEnumerable<GetOuteltItemDetailSummaryResponseModel> GetOuteltItemDetailSummary(OrderReportRequestModel requestModel);
+        OutletSaleDetailsModel GetOuteltSaleDetails(OrderReportRequestModel requestModel);
     }
 }

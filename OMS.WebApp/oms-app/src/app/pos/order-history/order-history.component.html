@@ -1,17 +1,20 @@
 <div class="innerContainer">
     <div fxLayout="row" fxLayoutAlign="center center" class="content">
       <mat-card class="card" >
-          <h2>Report</h2>
+          <h2>Reports</h2>
         <mat-card-content>
           <mat-tab-group mat-stretch-tabs>
             <mat-tab label="Order details">
               <app-order-report></app-order-report>
               </mat-tab>
-              <mat-tab label="Order Item wise">
+              <mat-tab label="Item wise">
                 <app-order-report-item-wise></app-order-report-item-wise>
               </mat-tab>
-              <mat-tab label="Order Item Summary">
+              <mat-tab label="Item Summary">
                 <app-order-report-item-summary></app-order-report-item-summary>
+              </mat-tab>
+              <mat-tab label="Sales">
+                <app-order-report-sale></app-order-report-sale>
               </mat-tab>
             </mat-tab-group>
         </mat-card-content>

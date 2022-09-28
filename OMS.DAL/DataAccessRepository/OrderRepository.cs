@@ -39,7 +39,7 @@ namespace OMS.DAL.DataAccessRepository
             tblRequestPaymentDetails.Columns.Add("Amount");
             foreach (var payment in orderRequestModel.RequestPaymentDetails)
             {
-                tblRequestPaymentDetails.Rows.Add(null, payment.PaymentTypeId, payment.Amount);
+                tblRequestPaymentDetails.Rows.Add(payment.PaymentTypeId, payment.PaymentTypeId, payment.Amount);
             }
             var paramStringProcedureStatus = new SqlParameter()
             {

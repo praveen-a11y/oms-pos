@@ -12,5 +12,8 @@ namespace OMS.DAL.IDataAccessRepository
         IEnumerable<GetOutletOrderListResponseModel> GetOutletOrderList(OrderReportRequestModel requestModel);
         IEnumerable<GetOuteltItemWiseOrderDetailNewResponseModel> GetOuteltItemWiseOrderDetail(OrderReportRequestModel requestModel);
         IEnumerable<GetOuteltItemDetailSummaryResponseModel> GetOuteltItemDetailSummary(OrderReportRequestModel requestModel);
+        IEnumerable<GetOutletSaleDetailsResponseModel> GetOuteltSaleDetails(OrderReportRequestModel requestModel);
+
+        IEnumerable<GetOutletSalePaymentDetailsResponseModel> GetOuteltSalePaymentDetails(OrderReportRequestModel requestModel);
     }
 }

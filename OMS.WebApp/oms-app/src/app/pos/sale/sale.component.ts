@@ -28,7 +28,7 @@ currentCart: any;
 onHoldCarts : any = [];
 paymentModes: any[] = [{ paymentTypeId: '1', paymentType: 'Cash' },{ paymentTypeId: '8', paymentType: 'Card' } ,{ paymentTypeId: '3', paymentType: 'Online' }];
 customerDetails: any = { name: '', mobile: '', address: ''};
-paymentInput: PaymentInput = {balanceDue: 0, amountTendered: 0, paymentModeId: '1' };
+paymentInput: PaymentInput = {balanceDue: 0, amountTendered: 0, paymentTypeId: '1' };
 paymentInputs: any[] = [];
 showConfirmBlock = false;
 showPosMain = true;
@@ -115,7 +115,7 @@ removeAllFromCart(): void{
     this.paymentInput = {
       balanceDue: 0,
       amountTendered: 0,
-      paymentModeId: '1'
+      paymentTypeId: '1'
      }
   }
   onHoldCartId = 1;
@@ -158,7 +158,7 @@ removeAllFromCart(): void{
     this.paymentInput = {
       balanceDue: parseFloat(this.currentCart.itemSummary.cartTotal.toFixed(2)),
       amountTendered: parseFloat(this.currentCart.itemSummary.cartTotal.toFixed(2)),
-      paymentModeId: '1'
+      paymentTypeId: '1'
      }
     }
   }
@@ -184,7 +184,7 @@ removeAllFromCart(): void{
   }
 
   private saveOrder(): void{
-
+debugger;
   this.currentOrder = {
     orderType: this.currentCart.orderType,
     orderId: 1,
@@ -286,7 +286,7 @@ removeAllFromCart(): void{
         });
     } else{
       const productExistInPayment = this.paymentInputs
-      .find((x: { paymentModeId: string; }) => x.paymentModeId === paymentInput.paymentModeId);
+      .find((x: { paymentTypeId: string; }) => x.paymentTypeId === paymentInput.paymentTypeId);
   
       if(productExistInPayment){
       productExistInPayment.amountTendered += paymentInput.amountTendered;
@@ -296,8 +296,8 @@ removeAllFromCart(): void{
       else{
         this.paymentInputs.push({
           amountTendered: paymentInput.amountTendered, 
-          paymentModeId: paymentInput.paymentModeId,
-          paymentMode: this.getPaymentModeName(paymentInput.paymentModeId),
+          paymentTypeId: paymentInput.paymentTypeId,
+          paymentMode: this.getPaymentModeName(paymentInput.paymentTypeId),
           balanceDue: 0
         });
   
@@ -311,7 +311,7 @@ removeAllFromCart(): void{
   removePayment(paymentInput : PaymentInput): void{
 
   this.paymentInputs.forEach((element,index)=>{
-    if(element.paymentModeId == paymentInput.paymentModeId){ 
+    if(element.paymentTypeId == paymentInput.paymentTypeId){ 
       this.paymentInputs.splice(index,1);
     this.paymentInput.balanceDue = this.paymentInput.balanceDue + element.amountTendered;
     this.paymentInput.amountTendered = 0;

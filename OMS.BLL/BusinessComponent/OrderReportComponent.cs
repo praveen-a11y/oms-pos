@@ -31,5 +31,17 @@ namespace OMS.BLL.BusinessComponent
         {
             return _orderReportRepository.GetOutletOrderList(requestModel);
         }
+
+        public OutletSaleDetailsModel GetOuteltSaleDetails(OrderReportRequestModel requestModel)
+        {
+            OutletSaleDetailsModel outletSaleDetails = new OutletSaleDetailsModel();
+
+            outletSaleDetails.OutletSaleDetails = _orderReportRepository.GetOuteltSaleDetails(requestModel);
+            outletSaleDetails.OutletSalePaymentDetails = _orderReportRepository.GetOuteltSalePaymentDetails(requestModel);
+            _orderReportRepository.GetOuteltSaleDetails(requestModel);
+
+            return outletSaleDetails;
+        }
+
     }
 }

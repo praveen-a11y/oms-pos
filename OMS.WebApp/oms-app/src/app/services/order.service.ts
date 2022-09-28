@@ -41,7 +41,7 @@ import { AccountService } from "./account.service";
        
        order.paymentInputs.forEach(item => {
         requestOrder.requestPaymentDetails.push({
-          paymentType: item.paymentMode,      
+          paymentTypeId: item.paymentTypeId,      
           amount: item.amountTendered,
         });
        });

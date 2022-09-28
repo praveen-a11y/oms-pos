@@ -72,6 +72,36 @@ namespace OMS.DAL.DataAccessRepository
             return getOuteltItemDetailSummaries;
         }
 
+        public IEnumerable<GetOutletSaleDetailsResponseModel> GetOuteltSaleDetails(OrderReportRequestModel requestModel)
+        {
+            IEnumerable<GetOutletSaleDetailsResponseModel> responseModels = null;
+            UserViewModel usermodel = new UserViewModel();
+            var outletIdParam = new SqlParameter("@OutletId", requestModel.OutletId);
+            var fromDateParam = new SqlParameter("@fDate", requestModel.FromDate);
+
+            var result = _dbContext.GetOutletSaleDetail
+            .FromSqlRaw("exec getOutletSaleDetail @OutletId, @fDate", outletIdParam, fromDateParam).AsEnumerable();
+
+            responseModels = _mapper.Map<IEnumerable<GetOutletSaleDetailsResponseModel>>(result);
+
+            return responseModels;
+        }
+
+        public IEnumerable<GetOutletSalePaymentDetailsResponseModel> GetOuteltSalePaymentDetails(OrderReportRequestModel requestModel)
+        {
+            IEnumerable<GetOutletSalePaymentDetailsResponseModel> responseModels = null;
+            UserViewModel usermodel = new UserViewModel();
+            var outletIdParam = new SqlParameter("@OutletId", requestModel.OutletId);
+            var fromDateParam = new SqlParameter("@fDate", requestModel.FromDate);
+
+            var result = _dbContext.GetOutletSalePaymentDetail
+            .FromSqlRaw("exec getOutletSalePaymentDetail @OutletId, @fDate", outletIdParam, fromDateParam).AsEnumerable();
+
+            responseModels = _mapper.Map<IEnumerable<GetOutletSalePaymentDetailsResponseModel>>(result);
+
+            return responseModels;
+        }
+
 
 
 

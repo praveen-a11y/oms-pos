@@ -39,5 +39,11 @@ namespace OMS.Api.Controllers
         {
             return Ok(_orderReportComponent.GetOuteltItemDetailSummary(reportRequestModel));
         }
+        
+        [HttpPost("GetOuteltSaleDetails")]
+        public IActionResult GetOuteltSaleDetails(OrderReportRequestModel reportRequestModel)
+        {
+            return Ok(_orderReportComponent.GetOuteltSaleDetails(reportRequestModel));
+        }
     }
 }
