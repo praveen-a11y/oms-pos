@@ -20,5 +20,12 @@ namespace OMS.Api.Controllers
             orderRequestModel.CreatedById = UserId;
             return Ok(_orderComponent.OrderPlacement(orderRequestModel));
         }
+        
+        [HttpPost("Cancel")]
+        public IActionResult UpdateOrderVoid(OrderUpdateRequestModel requestModel)
+        {
+            requestModel.UserId = UserId;
+            return Ok(_orderComponent.UpdateOrderVoid(requestModel));
+        }
     }
 }

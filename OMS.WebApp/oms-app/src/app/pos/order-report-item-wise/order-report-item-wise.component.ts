@@ -14,7 +14,7 @@ import { MatSort, Sort } from '@angular/material/sort';
   styleUrls: ['./order-report-item-wise.component.scss']
 })
 export class OrderReportItemWiseComponent implements AfterViewInit  {  
-  displayedColumns: string[] = [ 'srNo', 'source', 'billNo', 'date', 'category', 'item', 'qty', 'rate', 'itemAmount', 'discount', 'gst', 'totalAmount'];
+  displayedColumns: string[] = [ 'srNo', 'billNo', 'orderSource', 'orderType', 'date', 'category', 'item', 'qty', 'rate', 'itemAmount', 'gst', 'totalAmount'];
   dataSource!: MatTableDataSource<OuteltItemWiseOrderResponse>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

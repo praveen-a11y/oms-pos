@@ -89,6 +89,7 @@ namespace OMS.DAL.DataModels
         public virtual DbSet<GetOuteltItemDetailSummaryResponse> GetOuteltItemDetailSummary { get; set; } = null!;
         public virtual DbSet<GetOutletSaleDetailsResponse> GetOutletSaleDetail { get; set; } = null!;
         public virtual DbSet<GetOutletSalePaymentDetailsResponse> GetOutletSalePaymentDetail { get; set; } = null!;
+        public virtual DbSet<CommonSpResponse> CommonSpResponses { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {            

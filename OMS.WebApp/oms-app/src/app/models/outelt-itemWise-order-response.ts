@@ -1,6 +1,7 @@
 export interface OuteltItemWiseOrderResponse{
     srNo: number,
-    source: string,
+    orderType: string,
+    orderSource: string,
     billNo: string,
     date: Date,
     category: string,

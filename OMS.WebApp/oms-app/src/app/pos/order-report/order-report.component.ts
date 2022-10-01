@@ -22,16 +22,9 @@ export class OrderReportComponent implements AfterViewInit  {
   outletOrderListResponse!: OutletOrderListResponse[];
   constructor(private _liveAnnouncer: LiveAnnouncer, private orderReportService: OrderReportService) { }
 
-  ngOnInit(): void {
-const request:OrderReportRequest = { outletId : 1, fromDate: '01/01/2022', toDate: '11/11/2022'};
-
-
-
-  }
+  ngOnInit(): void { }
   
-  ngAfterViewInit() {
-   
-  }
+  ngAfterViewInit() { }
 
   public search(): void{
 

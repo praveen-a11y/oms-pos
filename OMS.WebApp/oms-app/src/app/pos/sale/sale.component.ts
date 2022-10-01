@@ -14,6 +14,7 @@ import { DiscountComponent } from '../discount/discount.component';
 import { OrderService } from '../../services/order.service';
 import { Order } from '../../models/order';
 import { CartTabEnum } from '../../models/cart-tab-enum';
+import { PinValidateDialogComponent } from '../pin-validate-dialog/pin-validate-dialog.component';
 
 @Component({
   selector: 'app-sale',
@@ -329,24 +330,33 @@ debugger;
   
   openDialog(): void {
     if(this.currentCart.items.length){
+
+
+      
       let orderDiscount: OrderDiscount={
         inPercentage: 0,
         inAmount: 0,
         amount: this.currentCart.itemSummary.cartSubTotal,
         discountReason: ''
       };
-    const dialogRef = this.dialog.open(DiscountComponent, {
-      //width: '300px',
-      data: orderDiscount,
-      disableClose: true,
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');      
-      let orderDiscount: OrderDiscount = result;
-      this.calculateDiscount(orderDiscount); 
-    });
-  }
+
+      const dialogRef = this.dialog.open(PinValidateDialogComponent, {
+        width: '300px',
+        data: orderDiscount,
+        disableClose: true,
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');      
+        let orderDiscount: OrderDiscount = result;
+        debugger;
+        this.calculateDiscount(orderDiscount); 
+
+      });
+
+
+    }
 }
 
 openDialogAddCustomer(): void {

@@ -24,7 +24,7 @@ export class AppComponent {
     if (this.swUpdate.isEnabled) {      
       this.swUpdate.available.subscribe(() => {
         
-        this.dialogService.alertDialog({
+        this.dialogService.alertDialogSmall({
           title: 'New Release',
           message: `We've got some new updates!`,
           confirmText: 'Ok',

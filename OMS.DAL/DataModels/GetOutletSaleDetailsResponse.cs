@@ -9,8 +9,8 @@ namespace OMS.DAL.DataModels
 {
     public class GetOutletSaleDetailsResponse
     {
-        [Key]
-        public string? OrderSource { get; set; }
+        [Key]        
+        public string? OrderType { get; set; }
         public decimal NetSale { get; set; }
         public decimal ItemAmount { get; set; }
         public decimal Discount { get; set; }

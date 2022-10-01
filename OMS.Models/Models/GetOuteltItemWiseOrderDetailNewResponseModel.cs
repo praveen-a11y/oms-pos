@@ -9,7 +9,8 @@ namespace OMS.Models.Models
     public class GetOuteltItemWiseOrderDetailNewResponseModel
     {
         public long SrNo { get; set; }
-        public string? Source { get; set; }
+        public string? OrderSource { get; set; }
+        public string? OrderType { get; set; }
         public string? BillNo { get; set; }
         public DateTime? Date { get; set; }
         public string? Category { get; set; }

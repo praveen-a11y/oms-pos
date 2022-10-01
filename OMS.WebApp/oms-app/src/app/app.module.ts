@@ -39,6 +39,8 @@ import { OrderReportItemWiseComponent } from './pos/order-report-item-wise/order
 import { OrderReportItemSummaryComponent } from './pos/order-report-item-summary/order-report-item-summary.component';
 import { OrderReportSaleComponent } from './pos/order-report-sale/order-report-sale.component';
 import { DatePipe } from '@angular/common';
+import { NewOrderComponent } from './pos/new-order/new-order.component';
+import { ReasonComponent } from './dialogs/reason/reason.component';
 
 
 
@@ -62,7 +64,7 @@ import { DatePipe } from '@angular/common';
     NewOrderDialogComponent,
     KeyboardComponent,
     OskInputDirective, 
-    KeyboardKeyDirective, PinValidateDialogComponent, OrderReportComponent, OrderReportItemWiseComponent, OrderReportItemSummaryComponent, OrderReportSaleComponent  
+    KeyboardKeyDirective, PinValidateDialogComponent, OrderReportComponent, OrderReportItemWiseComponent, OrderReportItemSummaryComponent, OrderReportSaleComponent, NewOrderComponent, ReasonComponent  
   ],
   imports: [
     BrowserModule,

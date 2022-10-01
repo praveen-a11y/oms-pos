@@ -1,5 +1,5 @@
 export interface OutletSaleSourceDetails {
-    orderSource: string,
+    orderType: string,
     netSale: Number,
     itemAmount: Number,
     discount: Number,

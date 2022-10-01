@@ -1,0 +1,14 @@
+<div mat-dialog-content>    
+      <div class="row">       
+        <div class="col-sm-12">
+          <label for="discountReason">Enter Reason </label> <span class="text-danger"> {{ errorMessage }}</span>
+          <textarea type="text" id="discountReason" maxlength="200" class="form-control" rows="2" [(ngModel)]="orderUpdateRequest.comment"></textarea>
+        </div>
+      </div>  
+  </div>
+  <div mat-dialog-actions align="center">
+     <button mat-raised-button mat-dialog-close (click)="onNoClick()">Close</button>
+    <button mat-raised-button color="primary" (click)="onConfirm(orderUpdateRequest)" cdkFocusInitial>Confirm</button>
+    
+  </div>
+  

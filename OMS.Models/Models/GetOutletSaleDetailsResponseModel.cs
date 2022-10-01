@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace OMS.Models.Models
 {
     public class GetOutletSaleDetailsResponseModel
-    {
-        public string? OrderSource { get; set; }
+    {       
+        public string? OrderType { get; set; }
         public decimal NetSale { get; set; }
         public decimal ItemAmount { get; set; }
         public decimal Discount { get; set; }

@@ -31,4 +31,14 @@ export class DialogService {
       })
       .afterClosed();
   }
+
+  public alertDialogSmall(data: ConfirmDialogData): Observable<boolean> {
+    return this.dialog
+      .open(AlertComponent, {
+        data,
+        width: '233px',
+        disableClose: true,
+      })
+      .afterClosed();
+  }
 }

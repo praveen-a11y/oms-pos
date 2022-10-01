@@ -10,5 +10,6 @@ namespace OMS.DAL.IDataAccessRepository
     public interface IOrderRepository
     {
         OrderResponseModel OrderPlacement(OrderRequestModel orderRequestModel);
+        CommonSpResponseModel UpdateOrderVoid(OrderUpdateRequestModel requestModel);
     }
 }
