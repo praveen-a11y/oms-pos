@@ -2,7 +2,10 @@
 <app-bill [currentOrder] = "currentOrder"></app-bill>     
   </div>
   <div mat-dialog-actions align="center">
-    <button class="btn btn-outline-secondary" mat-dialog-close mat-button (click)="onNoClick()">Cancel</button>
-    <button class="btn btn-success" [print]="['demo']" mat-button [mat-dialog-close] cdkFocusInitial>Print</button>
-    <!-- <button [print]="['demo']" class="btn btn-info m-1">Print Bill</button> -->
+    <button class="btn btn-outline-secondary" mat-dialog-close mat-button (click)="onNoClick()">Cancel</button>   
+        <!-- <button [print]="['demo']" class="btn btn-info m-1">Print Bill</button> -->   
+    <ngx-print-element #element="element">
+      <button class="btn btn-success" (click)="printBill(element)" mat-button [mat-dialog-close] cdkFocusInitial>Print</button>
+    </ngx-print-element>
+
   </div>

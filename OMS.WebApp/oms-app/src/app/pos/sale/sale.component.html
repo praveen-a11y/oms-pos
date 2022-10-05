@@ -41,7 +41,7 @@
         
           <div class="row m-1 p-1 g-2">
             <div class="col-sm-12 text-center">
-              <mat-button-toggle-group [(ngModel)]="paymentInput.paymentModeId" name="fontStyle" aria-label="Font Style">
+              <mat-button-toggle-group [(ngModel)]="paymentInput.paymentTypeId" name="fontStyle" aria-label="Font Style">
                 
                 <mat-button-toggle *ngFor="let payment of paymentModes" [value]="payment.paymentTypeId">{{ payment.paymentType }}</mat-button-toggle>
               

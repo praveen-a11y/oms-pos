@@ -129,7 +129,7 @@ import { OrderDiscount } from "../models/order-discount";
       public calculateDiscount(currentCart: any, orderDiscount: OrderDiscount): void{
         currentCart.itemSummary.discountReason = '';         
 
-        if(orderDiscount.inAmount > currentCart.itemSummary.cartSubTotal){
+        if(orderDiscount.inPercentage > 100){
           currentCart.itemSummary.discount = 0;
           currentCart.itemSummary.discountPercentage = 0;
           currentCart.itemSummary.cartTotal = 0;

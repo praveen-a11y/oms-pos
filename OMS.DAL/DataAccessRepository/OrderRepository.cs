@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using OMS.DAL.DataModels;
 using OMS.DAL.IDataAccessRepository;
+using OMS.Models;
 using OMS.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace OMS.DAL.DataAccessRepository
             tblRequestPaymentDetails.Columns.Add("Amount");
             foreach (var payment in orderRequestModel.RequestPaymentDetails)
             {
-                tblRequestPaymentDetails.Rows.Add(null, payment.PaymentTypeId, payment.Amount);
+                tblRequestPaymentDetails.Rows.Add(payment.PaymentTypeId, payment.PaymentTypeId, payment.Amount);
             }
             var paramStringProcedureStatus = new SqlParameter()
             {
@@ -80,6 +81,26 @@ namespace OMS.DAL.DataAccessRepository
                 orderResponse = res;
 
             return orderResponse;
+        }
+
+        public CommonSpResponseModel UpdateOrderVoid(OrderUpdateRequestModel requestModel)
+        {
+            CommonSpResponseModel responseModel = null;
+            UserViewModel usermodel = new UserViewModel();
+            var outletIdParam = new SqlParameter("@OutletId", requestModel.OutletId);
+            var orderIdParam = new SqlParameter("@OrderId", requestModel.OrderId);
+            var voidReasonParam = new SqlParameter("@VoidReason", requestModel.Comment);
+            var paramCreatedBy = new SqlParameter("@UserId", SqlDbType.UniqueIdentifier)
+            {
+                Value = requestModel.UserId,
+            };
+
+            var result = _dbContext.CommonSpResponses
+            .FromSqlRaw("exec UpdateOrderVoid @OutletId, @OrderId, @VoidReason, @UserId", outletIdParam, orderIdParam, voidReasonParam ,paramCreatedBy).AsEnumerable();
+
+            responseModel = _mapper.Map<CommonSpResponseModel>(result.FirstOrDefault());
+
+            return responseModel;
         }
 
         private static SqlParameter[] BuildOrderParams(OrderRequestModel orderRequestModel)

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OrderDiscount } from '../../models/order-discount';
+import { DiscountComponent } from '../discount/discount.component';
 
 @Component({
   selector: 'app-pin-validate-dialog',
@@ -12,7 +13,7 @@ export class PinValidateDialogComponent implements OnInit {
   securityPin!: string;
   flag: boolean = true;
   constructor(public dialog: MatDialog,
-    public dialogRef: MatDialogRef<PinValidateDialogComponent>,
+    public dialogRef: MatDialogRef<DiscountComponent>,
     @Inject(MAT_DIALOG_DATA) 
     public orderDiscount: OrderDiscount,
   ) { 
@@ -30,8 +31,20 @@ export class PinValidateDialogComponent implements OnInit {
     this.errorMessage = '';
     if(!securityPin){
       this.errorMessage = '(Required)';
-    } else{
-      this.dialogRef.close(this.orderDiscount);
+    } else{     
+
+      const dialogRefDis = this.dialog.open(DiscountComponent, {
+        //width: '300px',
+        data: this.orderDiscount,
+        disableClose: true,
+      });
+  
+      dialogRefDis.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');      
+        let orderDiscount: OrderDiscount = result;
+        this.dialogRef.close(orderDiscount);
+      });
+
     }
     
   }

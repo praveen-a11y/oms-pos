@@ -14,7 +14,13 @@ namespace OMS.DAL.DataAccessRepository
     {
         public Profiles()
         {
-            CreateMap<ItemListOutletCategoryWise, ItemListOutletCategoryWiseModel>();            
+            CreateMap<ItemListOutletCategoryWise, ItemListOutletCategoryWiseModel>();
+            CreateMap<GetOutletOrderListResponse, GetOutletOrderListResponseModel>();
+            CreateMap<GetOuteltItemWiseOrderDetailNewResponse, GetOuteltItemWiseOrderDetailNewResponseModel>();
+            CreateMap<GetOuteltItemDetailSummaryResponse, GetOuteltItemDetailSummaryResponseModel>();
+            CreateMap<GetOutletSaleDetailsResponse, GetOutletSaleDetailsResponseModel>();
+            CreateMap<GetOutletSalePaymentDetailsResponse, GetOutletSalePaymentDetailsResponseModel>();
+            CreateMap<CommonSpResponse, CommonSpResponseModel>();
         }
     }
 }

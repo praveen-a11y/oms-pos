@@ -1,4 +1,4 @@
 export interface OrderRequestPayment{
-    paymentType: string,
+    paymentTypeId: string,
     amount: number
 }

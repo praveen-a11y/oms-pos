@@ -5,6 +5,7 @@ import { delay, filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SwUpdate } from '@angular/service-worker';
+import { DialogService } from './services/dialog.service';
 
 @UntilDestroy()
 @Component({
@@ -16,14 +17,21 @@ export class AppComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver, private router: Router, private swUpdate: SwUpdate) {}
+  constructor(private dialogService: DialogService, private observer: BreakpointObserver, private router: Router, private swUpdate: SwUpdate) {}
 
   ngOnInit() {
     //alert(this.swUpdate.isEnabled);
     if (this.swUpdate.isEnabled) {      
       this.swUpdate.available.subscribe(() => {
-        //alert('new update');
-        window.location.reload();
+        
+        this.dialogService.alertDialogSmall({
+          title: 'New Release',
+          message: `We've got some new updates!`,
+          confirmText: 'Ok',
+          cancelText: '',
+        }).subscribe(result => {     
+          window.location.reload();
+          });
       });
     }
   }

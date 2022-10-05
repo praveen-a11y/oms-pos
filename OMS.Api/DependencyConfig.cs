@@ -15,6 +15,9 @@
             services.AddTransient<DAL.IDataAccessRepository.IOrderRepository, DAL.DataAccessRepository.OrderRepository>();
             services.AddTransient<BLL.IBusinessComponent.IOrderComponent, BLL.BusinessComponent.OrderComponent>();
 
+            services.AddTransient<DAL.IDataAccessRepository.IOrderReportRepository, DAL.DataAccessRepository.OrderReportRepository>();
+            services.AddTransient<BLL.IBusinessComponent.IOrderReportComponent, BLL.BusinessComponent.OrderReportComponent>();
+
         }
     }
 }

@@ -19,5 +19,9 @@ export class BillPopupComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
+  
+    printBill(element: any): void{
+  element?.print('bill');
+  element?.print('kot');
+}
 }

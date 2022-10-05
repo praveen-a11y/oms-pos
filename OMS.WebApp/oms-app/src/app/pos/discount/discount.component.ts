@@ -27,20 +27,7 @@ export class DiscountComponent {
     if(!orderDiscount.discountReason.length && orderDiscount.inPercentage > 0){
       this.errorMessage = '(Required)';
     } else{
-
-      const dialogRef = this.dialog.open(PinValidateDialogComponent, {
-        width: '300px',
-        data: orderDiscount,
-        disableClose: true,
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');      
-        let orderDiscount: OrderDiscount = result;
-        this.dialogRef.close(orderDiscount);
-      });
-    
-      
+      this.dialogRef.close(this.orderDiscount);
     }
     
   }

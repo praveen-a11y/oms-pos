@@ -21,5 +21,9 @@ namespace OMS.BLL.BusinessComponent
         {
             return _orderRepository.OrderPlacement(orderRequestModel);
         }
+        public CommonSpResponseModel UpdateOrderVoid(OrderUpdateRequestModel requestModel)
+        {
+            return _orderRepository.UpdateOrderVoid(requestModel);
+        }
     }
 }

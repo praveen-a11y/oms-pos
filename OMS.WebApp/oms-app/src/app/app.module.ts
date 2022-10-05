@@ -34,6 +34,13 @@ import { KeyboardService } from './keyboard/keyboard.service';
 import { OskInputDirective } from './keyboard/osk-input.directive';
 import { KeyboardKeyDirective } from './keyboard/keyboard-key.directive';
 import { PinValidateDialogComponent } from './pos/pin-validate-dialog/pin-validate-dialog.component';
+import { OrderReportComponent } from './pos/order-report/order-report.component';
+import { OrderReportItemWiseComponent } from './pos/order-report-item-wise/order-report-item-wise.component';
+import { OrderReportItemSummaryComponent } from './pos/order-report-item-summary/order-report-item-summary.component';
+import { OrderReportSaleComponent } from './pos/order-report-sale/order-report-sale.component';
+import { DatePipe } from '@angular/common';
+import { NewOrderComponent } from './pos/new-order/new-order.component';
+import { ReasonComponent } from './dialogs/reason/reason.component';
 
 
 
@@ -57,7 +64,7 @@ import { PinValidateDialogComponent } from './pos/pin-validate-dialog/pin-valida
     NewOrderDialogComponent,
     KeyboardComponent,
     OskInputDirective, 
-    KeyboardKeyDirective, PinValidateDialogComponent  
+    KeyboardKeyDirective, PinValidateDialogComponent, OrderReportComponent, OrderReportItemWiseComponent, OrderReportItemSummaryComponent, OrderReportSaleComponent, NewOrderComponent, ReasonComponent  
   ],
   imports: [
     BrowserModule,
@@ -83,7 +90,7 @@ import { PinValidateDialogComponent } from './pos/pin-validate-dialog/pin-valida
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  }, KeyboardService],
+  }, KeyboardService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

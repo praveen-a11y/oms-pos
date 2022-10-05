@@ -2,9 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
+import { CommonResponse } from "../models/common-response";
 import { Order } from "../models/order";
 import { OrderRequest } from "../models/order-request";
 import { OrderResponse } from "../models/order-response";
+import { OrderUpdateRequest } from "../models/order-update-request";
 import { AccountService } from "./account.service";
 
 
@@ -41,12 +43,10 @@ import { AccountService } from "./account.service";
        
        order.paymentInputs.forEach(item => {
         requestOrder.requestPaymentDetails.push({
-          paymentType: item.paymentMode,      
+          paymentTypeId: item.paymentTypeId,      
           amount: item.amountTendered,
         });
-       });
-    
-    console.log(order);
+       });    
 
       return this.http.post<OrderResponse>(`${environment.apiUrl}/order/save/`, requestOrder).
           pipe(
@@ -57,4 +57,17 @@ import { AccountService } from "./account.service";
              })
           )
       }
+
+      public cancelOrder(orderUpdateRequest: OrderUpdateRequest): Observable<CommonResponse> {   
+        const outleId = this.accountService.getOutletId();
+        orderUpdateRequest.outletId = outleId;        
+        return this.http.post<CommonResponse>(`${environment.apiUrl}/order/cancel`, orderUpdateRequest).
+            pipe(
+               map((data: CommonResponse) => {
+                 return data;
+               }), catchError( error => {
+                 return throwError( 'Something went wrong!' );
+               })
+            )
+        }
   }

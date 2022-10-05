@@ -84,7 +84,12 @@ namespace OMS.DAL.DataModels
         public virtual DbSet<LoginCheckResponse> LoginCheckResponses { get; set; } = null!;
         public virtual DbSet<ItemListOutletCategoryWise> ItemListOutletCategoryWises { get; set; } = null!;
         public virtual DbSet<OrderResponseModel> OrderResponse { get; set; } = null!;
-
+        public virtual DbSet<GetOutletOrderListResponse> GetOutletOrderList { get; set; } = null!;
+        public virtual DbSet<GetOuteltItemWiseOrderDetailNewResponse> GetOuteltItemWiseOrderDetails { get; set; } = null!;
+        public virtual DbSet<GetOuteltItemDetailSummaryResponse> GetOuteltItemDetailSummary { get; set; } = null!;
+        public virtual DbSet<GetOutletSaleDetailsResponse> GetOutletSaleDetail { get; set; } = null!;
+        public virtual DbSet<GetOutletSalePaymentDetailsResponse> GetOutletSalePaymentDetail { get; set; } = null!;
+        public virtual DbSet<CommonSpResponse> CommonSpResponses { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {            

@@ -16,8 +16,7 @@ import { AccountService } from "./account.service";
         private accountService: AccountService
     ) {}
     
-   public getItems(): Observable<CategoryItem[]> {
-    debugger;
+   public getItems(): Observable<CategoryItem[]> {   
         const outleId = this.accountService.getOutletId();
         return this.http.get<CategoryItem[]>(`${environment.apiUrl}/Item/GetItems?outletId=` + outleId).
             pipe(
