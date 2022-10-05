@@ -13,7 +13,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrls: ['./order-report.component.scss']
 })
 export class OrderReportComponent implements AfterViewInit  {  
-  displayedColumns: string[] = ['orderBy','orderDate','orderSource','orderNo','orderStatus','orderAmount','paymentMode','reason'];
+  displayedColumns: string[] = ['orderBy','orderDate','orderSource', 'orderType','orderNo','orderStatus','orderAmount','paymentMode','reason'];
   dataSource!: MatTableDataSource<OutletOrderListResponse>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

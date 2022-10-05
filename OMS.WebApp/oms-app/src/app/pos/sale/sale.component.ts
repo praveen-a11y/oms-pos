@@ -350,8 +350,9 @@ debugger;
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');      
         let orderDiscount: OrderDiscount = result;
-        debugger;
-        this.calculateDiscount(orderDiscount); 
+        if(orderDiscount){
+          this.calculateDiscount(orderDiscount);
+        }        
 
       });
 

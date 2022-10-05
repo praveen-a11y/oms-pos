@@ -18,7 +18,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./new-order.component.scss']
 })
 export class NewOrderComponent implements AfterViewInit  {  
-  displayedColumns: string[] = ['orderBy','orderDate','orderSource','orderNo','orderStatus','orderAmount','paymentMode','reason', 'actions'];
+  displayedColumns: string[] = ['orderBy','orderDate','orderSource', 'orderType', 'orderNo','orderStatus','orderAmount','paymentMode','reason', 'actions'];
   dataSource!: MatTableDataSource<OutletOrderListResponse>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
